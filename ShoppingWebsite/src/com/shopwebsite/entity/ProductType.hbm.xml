@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.shopwebsite.entity">
+	<class name="ProductType" table="producttype">
+		<id name="id" column="ID">
+			<generator class="increment"/>
+		</id>
+		<property name="name" type="java.lang.String" not-null="true"
+			column="name" length="20" />
+		<!-- 映射与Product的一对多关系 
+		     key:指定Product中的外键列名
+		     one-to-many中class:指定关联属性的类型-->
+		     
+		<set name="productSet" cascade="delete">
+		    <key column="typeid"/>
+		    <one-to-many class="Product" />
+		</set>
+		
+		
+	</class>
+</hibernate-mapping>
